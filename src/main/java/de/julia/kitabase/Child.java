@@ -13,6 +13,10 @@ public class Child {
 	private String firstName;
 	private String lastName;
 	
+	public Child() {
+		super();
+	}
+	
 	public Child(String lastName, String firstName) {
 		this.lastName = lastName;
 		this.firstName = firstName;

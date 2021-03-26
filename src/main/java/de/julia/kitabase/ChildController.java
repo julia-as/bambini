@@ -1,9 +1,7 @@
 package de.julia.kitabase;
 
 import java.util.List;
-import java.util.Optional;
 
-import org.springframework.context.annotation.Bean;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,24 +22,29 @@ public class ChildController {
 
 	 // Aggregate root
 	 // tag::get-aggregate-root[]
-	@GetMapping("/{groupName}")
-	public List<Child> all() {
+	@GetMapping("/children")
+	public List<Child> allChildren() {
 		return repository.findAll();
 	}
 	// end::get-aggregate-root[]
 	
-	
-	@PostMapping("/{groupName}")
-	public Child newChild(@RequestBody Child newChild) {
-		return repository.save(newChild);
-	}
+//	@GetMapping("/children/{groupName}")
+//	public List<Child> allChildrenPerGroup() {
+//		return repository.findAll();
+//	}
 	
 	
 	// Get single child
-	@GetMapping("/{groupName}/{id}") 
+	@GetMapping("/children/{groupName}/{id}") 
 	public Child getChild(@PathVariable String groupName, Long id) {
 		return  repository.findById(id)
 				.orElseThrow(() -> new ChildNotFoundException(id));
+	}
+	
+	
+	@PostMapping("/children/{groupName}")
+	public Child newChild(@RequestBody Child newChild) {
+		return repository.save(newChild);
 	}
 	
 	
