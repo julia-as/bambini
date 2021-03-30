@@ -6,6 +6,9 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import de.julia.kitabase.model.Child;
+import de.julia.kitabase.repository.ChildRepository;
+
 @Configuration
 public class LoadDatabase {
 
@@ -14,8 +17,9 @@ public class LoadDatabase {
 	@Bean
 	CommandLineRunner initDatabase(final ChildRepository repository) {
 		return args -> {
-			log.info("Preloading " + repository.save(new Child("Fritz", "Heinrich")));
-		      log.info("Preloading " + repository.save(new Child("Max", "Müller")));
+			log.info("Preloading " + repository.save(new Child("Heinrich", "Fritz", "Hasen")));
+		      log.info("Preloading " + repository.save(new Child("Müller", "Max", "Igel")));
+		      log.info("Preloading " + repository.save(new Child("Millie", "Huebsch", "Hasen")));
 		};
 	}
 	

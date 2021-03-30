@@ -1,4 +1,4 @@
-package de.julia.kitabase;
+package de.julia.kitabase.model;
 
 import java.util.Objects;
 
@@ -12,16 +12,27 @@ public class Child {
 	private @Id @GeneratedValue Long id;
 	private String firstName;
 	private String lastName;
+	private String groupName;
 	
+
 	public Child() {
 		super();
 	}
-	
-	public Child(String lastName, String firstName) {
+
+	public Child(String lastName, String firstName, String groupName) {
 		this.lastName = lastName;
 		this.firstName = firstName;
+		this.groupName = groupName;
+	}
+	
+	public String getGroupName() {
+		return groupName;
 	}
 
+	public void setGroupName(String groupName) {
+		this.groupName = groupName;
+	}
+	
 	public Long getId() {
 		return id;
 	}
@@ -60,12 +71,15 @@ public class Child {
 
 	  @Override
 	  public int hashCode() {
-	    return Objects.hash(this.id, this.lastName, this.firstName);
+	    return Objects.hash(this.id, this.lastName, this.firstName, this.groupName);
 	  }
 
 	  @Override
 	  public String toString() {
-	    return "Child{" + "id=" + this.id + ", first name ='" + this.firstName + '\'' + ", last name ='" + this.lastName + '\'' + '}';
+	    return "Child{" + "id=" + this.id + ", "
+	    		+ "first name ='" + this.firstName + '\'' + ", "
+	    				+ "last name ='" + this.lastName + '\'' + ", "
+	    						+ "group name ='" + this.groupName + '}';
 	  }
 	
 }

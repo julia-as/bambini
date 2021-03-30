@@ -1,4 +1,4 @@
-package de.julia.kitabase;
+package de.julia.kitabase.exceptions;
 
 @SuppressWarnings("serial")
 public class ChildNotFoundException extends RuntimeException {
