@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import de.julia.kitabase.exceptions.ChildNotFoundException;
@@ -40,10 +41,10 @@ public class ChildController {
 	// end::get-aggregate-root[]
 	
 	
-//	@GetMapping("/children/{groupName}")
-//	public List<Child> allChildrenPerGroup(@PathVariable String groupName) {
-//		return repository.findByGroupName(groupName);
-//	}
+	@GetMapping("/children/{groupName}")
+	public List<Child> allChildrenPerGroup(@PathVariable(value="groupName", required=true) String groupName) {
+		return repository.findByGroupName(groupName);
+	}
 	
 	
 	// Get single child
@@ -53,8 +54,8 @@ public class ChildController {
 //				.orElseThrow(() -> new ChildNotFoundException(id));
 //	}
 	
-	@GetMapping("/children/{id}") 
-	public Child getChild(@PathVariable Long id) {
+	@GetMapping("/child/{id}") 
+	public Child getChild(@PathVariable(value="id", required=true) Long id) {
 		return  repository.findById(id)
 				.orElseThrow(() -> new ChildNotFoundException(id));
 	}
