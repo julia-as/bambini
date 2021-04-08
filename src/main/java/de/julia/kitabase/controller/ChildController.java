@@ -1,5 +1,7 @@
 package de.julia.kitabase.controller;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -41,28 +43,41 @@ public class ChildController {
 	// end::get-aggregate-root[]
 	
 	
+	// Get all children of one group
 	@GetMapping("/children/{groupName}")
-	public List<Child> allChildrenPerGroup(@PathVariable(value="groupName", required=true) String groupName) {
-		return repository.findByGroupName(groupName);
+	public List<Child> allChildrenPerGroup(@PathVariable String groupName) {
+		System.out.println("groupName: " + groupName);
+		return repository.findByGroupNameIgnoreCase(groupName);
 	}
 	
 	
-	// Get single child
-//	@GetMapping("/children/{groupName}/{id}") 
-//	public Child getChild(@PathVariable String groupName, Long id) {
-//		return  repository.findById(id)
-//				.orElseThrow(() -> new ChildNotFoundException(id));
-//	}
-	
+	// Get child by ID
 	@GetMapping("/child/{id}") 
-	public Child getChild(@PathVariable(value="id", required=true) Long id) {
+	public Child getChildById(@PathVariable(value="id", required=true) Long id) {
 		return  repository.findById(id)
 				.orElseThrow(() -> new ChildNotFoundException(id));
 	}
+
+
+	// Get child by name, send last name as request parameter "lastName={lastName}"
+	@GetMapping("/child/lastName") 
+	public Child getChildByLastName(@RequestParam(value="lastName") String lastName) {
+		return  repository.findByLastNameIgnoreCase(lastName)
+				.orElseThrow(() -> new ChildNotFoundException(lastName));
+	}
 	
 	
-	@PostMapping("/children/{groupName}")
+	// Get child by first name, send first name as request parameter "firstName={firstName}"
+	@GetMapping("/child/firstName") 
+	public Child getChildByFirstName(@RequestParam(value="firstName") String firstName) {
+		return  repository.findByFirstNameIgnoreCase(firstName)
+				.orElseThrow(() -> new ChildNotFoundException(firstName));
+		}
+		
+	
+	@PostMapping("/children")
 	public Child newChild(@RequestBody Child newChild) {
+		System.out.println("new child: " + newChild.toString());
 		return repository.save(newChild);
 	}
 	
@@ -84,7 +99,7 @@ public class ChildController {
 	
 	
 	// Delete child
-	@DeleteMapping("/{groupName}/{id}")
+	@DeleteMapping("/child/{id}")
 	public void deleteChild(@PathVariable Long id) {
 		repository.deleteById(id);
 	}

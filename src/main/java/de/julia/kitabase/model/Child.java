@@ -2,16 +2,21 @@ package de.julia.kitabase.model;
 
 import java.util.Objects;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 @Entity
 public class Child {
-
-	private @Id @GeneratedValue Long id;
+	
+	@Id @GeneratedValue 
+	private Long id;
+	@Column(nullable = false)
 	private String firstName;
+	@Column(nullable = false)
 	private String lastName;
+	@Column(nullable = false)
 	private String groupName;
 	
 

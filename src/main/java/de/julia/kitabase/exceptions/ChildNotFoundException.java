@@ -3,7 +3,7 @@ package de.julia.kitabase.exceptions;
 @SuppressWarnings("serial")
 public class ChildNotFoundException extends RuntimeException {
 
-	public ChildNotFoundException(Long id) {
-		super("Could not find child " + id);
+	public ChildNotFoundException(Object o) {
+		super("Could not find child " + o);
 	}
 }
