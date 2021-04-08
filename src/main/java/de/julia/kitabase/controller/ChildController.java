@@ -83,12 +83,13 @@ public class ChildController {
 	
 	
 	// Replace child
-	@PutMapping("/{groupName}/{id}")
+	@PutMapping("/child/{id}")
 	public Child replaceChild(@RequestBody Child newChild, @PathVariable Long id) {
 		 return repository.findById(id)
 				 .map(child -> {
 					 child.setFirstName(newChild.getFirstName());
 					 child.setLastName(newChild.getLastName());
+					 child.setGroupName(newChild.getGroupName());
 					 return repository.save(child);
 				 })
 				 .orElseGet(() -> {
