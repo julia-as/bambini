@@ -17,9 +17,9 @@ public class LoadDatabase {
 	@Bean
 	CommandLineRunner initDatabase(final ChildRepository repository) {
 		return args -> {
-			log.info("Preloading " + repository.save(new Child("Heinrich", "Fritz", "Hasen")));
-		      log.info("Preloading " + repository.save(new Child("Müller", "Max", "Igel")));
-		      log.info("Preloading " + repository.save(new Child("Millie", "Huebsch", "Hasen")));
+			log.info("Preloading " + repository.save(new Child("Heinrich", "Fritz")));
+		      log.info("Preloading " + repository.save(new Child("Müller", "Max")));
+		      log.info("Preloading " + repository.save(new Child("Millie", "Huebsch")));
 		};
 	}
 	

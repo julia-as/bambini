@@ -16,7 +16,7 @@ public class Child {
 	private String firstName;
 	@Column(nullable = false)
 	private String lastName;
-	@Column(nullable = false)
+	@Column(nullable = true)
 	private String groupName;
 	
 
@@ -24,10 +24,9 @@ public class Child {
 		super();
 	}
 
-	public Child(String lastName, String firstName, String groupName) {
+	public Child(String lastName, String firstName) {
 		this.lastName = lastName;
 		this.firstName = firstName;
-		this.groupName = groupName;
 	}
 	
 	public String getGroupName() {
@@ -76,7 +75,7 @@ public class Child {
 
 	  @Override
 	  public int hashCode() {
-	    return Objects.hash(this.id, this.lastName, this.firstName, this.groupName);
+	    return Objects.hash(this.id, this.lastName, this.firstName);
 	  }
 
 	  @Override
